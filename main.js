@@ -6,7 +6,8 @@ $(document).ready(function(){
 	shift = 13;
 	tileSet = 14;
 
-
+	$('.tile-wrapper').css('width',arenaWidth+'px');
+	$('.header').css('width',arenaWidth+150+'px');
 	multiple = 0;
 	for(i=0;i<n;i++)
 	{
@@ -22,5 +23,7 @@ $(document).ready(function(){
 	$('.shift-left').css('left','-'+ shift +'px');
 	$('.shift-right').css('left', shift +'px');
 
-
+	
+	time = 25;
+	$('.time').text(time);
 });
