@@ -1,0 +1,24 @@
+{
+  "name": "mine-sweep",
+  "version": "1.0.0",
+  "description": "Alpha Version: Getting frontend powered by Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvcoolster/MineSweep.git"
+  },
+  "author": "Dharamveer Singh Chouhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvcoolster/MineSweep/issues"
+  },
+  "homepage": "https://github.com/dvcoolster/MineSweep#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.3"
+  }
+}
