@@ -7,7 +7,8 @@ $(document).ready(function(){
 	var tileSet = 14;
 
 	$('.tile-wrapper').css('width', arenaWidth + 'px');
-	$('.header').css('width', arenaWidth + 150 + 'px');
+	$('.player-wrapper').css('width', arenaWidth + 200 + 'px');
+	$('.header').css('width', arenaWidth + 200 + 'px');
 
 	var multiple = 0;
 // Populating the Tiles
