@@ -144,7 +144,7 @@ body
 
 	.element
 	{
-		width: 70px;
+		width: 75px;
 		margin: 0px 5px;
 		display: inline-block;
 
@@ -234,5 +234,60 @@ body
 	.base:nth-child(1)
 	{
 		margin-right: 30px;
+	}
+}
+
+.players-wrapper
+{
+	width: 900px;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	top: calc(100% - 275px);
+
+	.player
+	{
+		width: 200px;
+		height: 125px;
+		background: #FFF;
+		margin: 10px;
+		
+		.player-avatar-back 
+		{
+			width: 100%;
+			background: #222;
+			height: 80%;
+
+			.name 
+			{
+				width: 85%;
+				margin: auto;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				text-align: right;
+				color: #FFF;
+				font-family: $primary-font;
+				font-size: .9em;
+			}
+
+			.points-score
+			{
+				width: 85%;
+				margin: auto;
+				text-align: right;
+				color: #FFF;
+				font-family: $primary-font;
+				font-weight: 400;
+				font-size: 1.5em;
+			}
+
+			.points-score:after
+			{
+				content: 'PTS';
+			}
+		}
 	}
 }
