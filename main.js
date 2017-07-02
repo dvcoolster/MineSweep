@@ -1,29 +1,48 @@
 $(document).ready(function(){
 
-	arenaWidth = 700;
-	tileSpace = 66;
-	n = 111;
-	shift = 13;
-	tileSet = 14;
+	var arenaWidth = 700;
+	var tileSpace = 66;
+	var n = 111;
+	var shift = 13;
+	var tileSet = 14;
 
-	$('.tile-wrapper').css('width',arenaWidth+'px');
-	$('.header').css('width',arenaWidth+150+'px');
-	multiple = 0;
-	for(i=0;i<n;i++)
+	$('.tile-wrapper').css('width', arenaWidth + 'px');
+	$('.header').css('width', arenaWidth + 150 + 'px');
+
+	var multiple = 0;
+// Populating the Tiles
+	for(var i = 0; i <= n; i++)
 	{
-		if(i>=tileSet*(multiple+1))
+		if( i >= tileSet * (multiple + 1)){
 			multiple++;
-		console.log(multiple);
-		if(multiple%2==0)
-			$('.tile-wrapper').append("<div class='tile shift-left'></div>");
-		else
-			$('.tile-wrapper').append("<div class='tile shift-right'></div>");
+		}
+		if( multiple % 2 == 0){
+			$('.tile-wrapper').append("<div class='tile shift-left' id = '" + i + "'></div>");
+		} else {
+			$('.tile-wrapper').append("<div class='tile shift-right' id = '" + i + "'></div>");
+		}
 	}
 
-	$('.shift-left').css('left','-'+ shift +'px');
-	$('.shift-right').css('left', shift +'px');
+	$('.shift-left').css('left','-' + shift + 'px');
+	$('.shift-right').css('left', shift + 'px');
 
-	
-	time = 25;
+// Fixing the Positions after being loaded
+	// setTimeout(function () {
+	// 	for (var j = 110; j <= n; j++) {
+	// 		var elem = $('#' + j);
+	// 		console.log(elem);
+	// 		var pos = elem.position();
+	// 		console.log(pos);
+	// 		elem.css({ position: 'fixed', top: pos.top, left: pos.left});
+	// 	}
+	// }, 1000);
+
+// Under-Development: Sweeping the Tile, removing it from DOM
+	$('.tile').click(function (){
+		var removed = $(this).remove();
+		console.log(removed);
+	});
+
+	var time = 25;
 	$('.time').text(time);
 });

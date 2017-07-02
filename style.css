@@ -30,35 +30,40 @@ body {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap; }
-  .tile-wrapper .tile {
-    position: relative;
-    top: 0px;
-    height: 40px;
-    width: 40px;
-    transform-origin: 50% 50%;
-    transform: rotate(45deg);
-    border-radius: 11px;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
-    background: #FFF;
-    margin: -1.25px 5px;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    transition: all 0.2s ease; }
-  .tile-wrapper .shift-right {
-    position: relative;
-    left: 30px; }
-  .tile-wrapper .shift-left {
-    position: relative;
-    left: -30px; }
-  .tile-wrapper .tile:hover {
-    cursor: pointer;
-    top: -5px;
-    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.1); }
-  .tile-wrapper .tile:active {
-    top: 0px;
-    box-shadow: none;
-    background: #EEE; }
+
+.tile-wrapper .tile {
+  position: relative;
+  top: 0px;
+  height: 40px;
+  width: 40px;
+  transform-origin: 50% 50%;
+  transform: rotate(45deg);
+  border-radius: 11px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  background: #FFF;
+  margin: -1.25px 5px;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease; }
+
+.tile-wrapper .shift-right {
+  position: relative;
+  left: 30px; }
+
+.tile-wrapper .shift-left {
+  position: relative;
+  left: -30px; }
+
+.tile-wrapper .tile:hover {
+  cursor: pointer;
+  top: -5px;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.1); }
+
+.tile-wrapper .tile:active {
+  top: 0px;
+  box-shadow: none;
+  background: #EEE; }
 
 .header {
   position: relative;
@@ -77,89 +82,100 @@ body {
   left: 50%;
   transform: translate(-50%, 0%);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); }
-  .timer .time {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Roboto Slab", serif;
-    font-size: 1.5em;
-    font-weight: 700;
-    color: #fe0000; }
+
+.timer .time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto Slab", serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #fe0000; }
 
 .inventory {
   position: absolute;
   left: 0;
   width: 40%;
   height: 100%; }
-  .inventory .element-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-  .inventory .element {
-    width: 70px;
-    margin: 0px 5px;
-    display: inline-block; }
-    .inventory .element .circle {
-      position: relative;
-      width: 40px;
-      height: 40px;
-      border-radius: 100%;
-      background: #FFF;
-      display: inline-block; }
-      .inventory .element .circle .amount {
-        font-family: "Roboto Slab", serif;
-        color: #000;
-        font-size: 1.1em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-weight: 700;
-        transform: translate(-50%, -50%); }
-    .inventory .element .circle:nth-child(2) {
-      margin-left: -10px; }
-    .inventory .element .element-time {
-      width: 70px;
-      text-align: center;
-      font-family: "Roboto Slab", serif;
-      font-size: 1em;
-      font-weight: 700;
-      color: rgba(0, 0, 0, 0.4);
-      position: absolute;
-      top: -30px; }
+
+.inventory .element-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.inventory .element {
+  width: 70px;
+  margin: 0px 5px;
+  display: inline-block; }
+
+.inventory .element .circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background: #FFF;
+  display: inline-block; }
+
+.inventory .element .circle .amount {
+  font-family: "Roboto Slab", serif;
+  color: #000;
+  font-size: 1.1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  transform: translate(-50%, -50%); }
+
+.inventory .element .circle:nth-child(2) {
+  margin-left: -10px; }
+
+.inventory .element .element-time {
+  width: 70px;
+  text-align: center;
+  font-family: "Roboto Slab", serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: -30px; }
 
 .score {
   position: absolute;
   right: 0;
   width: 40%;
   height: 100%; }
-  .score .score-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-  .score .base {
-    position: relative;
-    height: 50px;
-    width: 50px;
-    transform-origin: 50% 50%;
-    transform: rotate(45deg);
-    border-radius: 11px;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
-    background: #FFF;
-    display: inline-block;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); }
-    .score .base .position {
-      font-family: "Roboto Slab", serif;
-      color: #000;
-      font-size: 1.1em;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      font-weight: 700;
-      transform: translate(-50%, -50%) rotate(-45deg); }
-  .score .base:nth-child(1) {
-    margin-right: 30px; }
+
+.score .score-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.score .base {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  transform-origin: 50% 50%;
+  transform: rotate(45deg);
+  border-radius: 11px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  background: #FFF;
+  display: inline-block;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); }
+
+.score .base .position {
+  font-family: "Roboto Slab", serif;
+  color: #000;
+  font-size: 1.1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  transform: translate(-50%, -50%) rotate(-45deg); }
+
+.score .base:nth-child(1) {
+  margin-right: 30px; }
 
 /*# sourceMappingURL=style.css.map */
