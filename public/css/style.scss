@@ -30,9 +30,48 @@ body
     margin: 0;
 }
 
+.login
+{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,.925);
+	z-index: 10000;
+
+	.container
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+
+		.login-text
+		{
+			font-family: $primary-font;
+			color: #FFF;
+			font-size: 1.4em;
+			text-align: center;
+			font-weight: 300;
+		}
+
+		input.username
+		{
+			width: 250px;
+			border: none;
+			outline: none;
+			background: none;
+			font-size: 1.6em;
+			color: #FFF;
+			padding: 20px;
+			border-bottom: 1px solid #FFF;
+			text-align: center;
+		}
+	}
+}
+
 .arena
 {
-	position: relative;
+	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	background: -webkit-linear-gradient(135deg, #f6416c, #fff6b8);
