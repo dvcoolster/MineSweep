@@ -1,5 +1,24 @@
 $(document).ready(function(){
 
+	function closeLogin(){
+		$('.login').animate({opacity: 0},500);
+		setTimeout(function(){
+			$('.login').css('display','none');
+		},500);
+	}
+
+	console.log('Running');
+
+	$(window).keydown(function(e){
+		if(e.keyCode==13){
+			username = $('input.username').val();
+			console.log(username);
+			closeLogin()
+		}
+	});
+
+	$('input.username').focus()
+
 	var arenaWidth = 700;
 	var tileSpace = 66;
 	var n = 111;
