@@ -37,35 +37,39 @@
 				</div>
 			</div>
 			<div class="tile-wrapper"></div>
+
 			<div class="players-wrapper">
-				<div class="player">
+				<div class="player" id ="player1">
+					<div class="player-avatar-back">
+						<div class="name1">Player Name</div>
+						<div class="points-score">93</div>
+					</div>
+				</div>
+
+				<div class="player" id ="player2">
+					<div class="player-avatar-back" >
+						<div class="name2">Player Name</div>
+						<div class="points-score">93</div>
+					</div>
+				</div>
+				<div class="player" id ="player3">
 					<div class="player-avatar-back">
 						<div class="name">Player Name</div>
 						<div class="points-score">93</div>
 					</div>
 				</div>
-				<div class="player">
-					<div class="player-avatar-back">
-						<div class="name">Player Name</div>
-						<div class="points-score">93</div>
-					</div>
-				</div>
-				<div class="player">
-					<div class="player-avatar-back">
-						<div class="name">Player Name</div>
-						<div class="points-score">93</div>
-					</div>
-				</div>
-				<div class="player">
+				<div class="player" id ="player4">
 					<div class="player-avatar-back">
 						<div class="name">Player Name</div>
 						<div class="points-score">93</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<script src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<audio id="bomb-planted" preload="auto" src ="/assets/sounds/bomb-planted.mp3"></audio>
 	</body>
 </html>

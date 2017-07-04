@@ -200,4 +200,11 @@ body {
       .players-wrapper .player .player-avatar-back .points-score:after {
         content: 'PTS'; }
 
+/*# Added by DV */
+.image-on-tile {
+  padding: 10px 0px 0px 5px;
+  transform: rotate(-45deg);
+  width: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */

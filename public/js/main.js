@@ -27,17 +27,6 @@ $(document).ready(function(){
 	$('.shift-left').css('left','-' + shift + 'px');
 	$('.shift-right').css('left', shift + 'px');
 
-// Fixing the Positions after being loaded
-	// setTimeout(function () {
-	// 	for (var j = 110; j <= n; j++) {
-	// 		var elem = $('#' + j);
-	// 		console.log(elem);
-	// 		var pos = elem.position();
-	// 		console.log(pos);
-	// 		elem.css({ position: 'fixed', top: pos.top, left: pos.left});
-	// 	}
-	// }, 1000);
-
 	var time = 25;
 	$('.time').text(time);
 
