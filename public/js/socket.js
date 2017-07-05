@@ -13,7 +13,6 @@ var selected = 'bomb'; // 'bomb' or 'sweep'
 
 // DEFINING ALL FUNCTIONS
 function setUsername () {
-  username = userID;
 
   // If the username is valid
   if (username) {
@@ -75,9 +74,19 @@ socket.on('user joined', function (data) {
 
   addParticipant(data);
   log(data.username + ' joined');
-
 });
 
+socket.on('reconnect', function () {
+  log('you have been reconnected');
+  if (username) {
+    socket.emit('add user', username);
+  }
+});
 
-// Sets the client's username
-setUsername();
+socket.on('all players', function (data){
+  log(data);
+});
+
+socket.on('reconnect_error', function () {
+  log('attempt to reconnect has failed');
+});

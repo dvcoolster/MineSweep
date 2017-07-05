@@ -14,6 +14,8 @@ $(document).ready(function(){
 			username = $('input.username').val();
 			console.log(username);
 			closeLogin()
+			// Sets the client's username
+			setUsername();
 		}
 	});
 

@@ -26,6 +26,50 @@ server.listen(port, function(){
 // Chatroom
 
 var numUsers = 0;
+var allPlayers = [];
+var User = function(id, username) {
+
+  // making it unique for the user
+  this.id = id;
+  this.username = username;
+
+  // Deafult Values: initiating the resources
+  var bombs = 5;
+  var sweeps = 0;
+  var points = 0;
+
+  // these are public methods
+  this.addBomb = function() {
+    bomb ++;
+  };
+  this.removeBomb = function() {
+    bomb --;
+  };
+  this.getBombs = function() {
+    return bombs;
+  };
+
+  this.addSweep = function() {
+    speed ++;
+  };
+  this.removeSweep = function() {
+    sweep --;
+  };
+  this.getSweeps = function() {
+    return sweeps;
+  };
+
+  this.addPoint = function() {
+    points ++;
+  };
+  this.removePoint = function() {
+    points --;
+  };
+  this.getPoints = function() {
+    return points;
+  };
+
+};
 
 io.on('connection', function (socket) {
   var addedUser = false;
@@ -36,16 +80,27 @@ io.on('connection', function (socket) {
     log('add user event emitted');
     if (addedUser) return;
     // we store the username in the socket session for this client
+    if(allPlayers.length >= 4) {
+      log("Lobby is full. Cannot add more players");
+      return;
+    }
     socket.username = username;
     ++numUsers;
     addedUser = true;
+
+    // Add user to Global Game State
+    allPlayers.push(new User(allPlayers.length + 1, socket.username));
 
     // echo globally (all clients) that a person has connected
     socket.emit('user joined', {
       username: socket.username,
       numUsers: numUsers
     });
+
+    socket.emit('all players', allPlayers);
+
     log(socket.username + " Added. Total users " + numUsers);
+    log(allPlayers);
   });
 
   // when the user disconnects.. perform this
