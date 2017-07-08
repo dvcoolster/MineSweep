@@ -26,17 +26,25 @@ server.listen(port, function(){
 // Chatroom
 
 var numUsers = 0;
-var allPlayers = [];
+
+var gameBoard = {
+  "allPlayers": [],
+  "allTiles": []
+};
+
+var EventEmitter = require('events');
+
 var User = function(id, username) {
 
   // making it unique for the user
   this.id = id;
   this.username = username;
+  this.points = 0;
 
   // Deafult Values: initiating the resources
   var bombs = 5;
   var sweeps = 0;
-  var points = 0;
+
 
   // these are public methods
   this.addBomb = function() {
@@ -60,49 +68,135 @@ var User = function(id, username) {
   };
 
   this.addPoint = function() {
-    points ++;
+    this.points ++;
   };
   this.removePoint = function() {
     points --;
   };
   this.getPoints = function() {
-    return points;
+    return this.points;
   };
 
 };
 
+var Tile = function (id, positive, negative) {
+  this.id = id,
+  this.status = 'idle', // 'bomb', 'sweep', 'exploded'
+  this.positive = 0,  // ID of player who may get positive outcome
+  this.negative = 0  // ID of player who got negative outcome
+};
+
+// Create Default Game State
+var n = 111;
+for(var i = 0; i <= n; i++)
+{
+  tile = new Tile(i);
+  gameBoard.allTiles.push(tile);
+}
+
+// Game Functions
+
+function successAttemptUpdate (data, socket) {
+  gameBoard.allTiles[data.tileID].status = data.attempt;
+  gameBoard.allTiles[data.tileID].positive = data.userID;
+  if (data.attempt == 'bomb') {
+    socket.emit('attemptSuccess', data);
+  }
+
+  if (data.attempt == 'sweep') {
+    io.emit('attemptSuccess', data);
+    updatePointsSweeped(data);
+  }
+  // console.log(data.tileID + " successfully " + data.attempt);
+
+};
+
+function userHasExploded (data) {
+  log(data);
+  gameBoard.allTiles[data.tileID].status = 'exploded';
+  gameBoard.allTiles[data.tileID].negative = data.userID;
+
+  io.emit('someoneExploded',data)
+  updatePointsExploded(data);
+};
+
+function failedAttemptUpdate (data) {
+  log(data);
+};
+
+function updatePointsSweeped (data) {
+  var resultPoints = ++gameBoard.allPlayers[data.userID - 1].points;
+
+  var points = {};
+  points["positiveID"] = data.userID;
+  points["positivePoints"] = resultPoints;
+  points["negativeID"] = 0;
+  points["negativePoints"] = 0;
+
+  io.emit('pointsUpdate', points);
+
+}
+
+function updatePointsExploded (data) {
+
+  var points = {};
+  points["positiveID"] = data.positiveID;
+  points["positivePoints"] = gameBoard.allPlayers[data.positiveID - 1].points + 2;
+  points["negativeID"] = data.userID;
+  points["negativePoints"] = --gameBoard.allPlayers[data.userID - 1].points;
+  // There is -1 in IDs because USER ID starts from 1, and index starts from 0
+  // Game State update
+  gameBoard.allPlayers[data.positiveID - 1].points = points["positivePoints"];
+
+  // Emit Score changes to everyone
+  io.emit('pointsUpdate', points);
+}
+
+// SOCKET CONNECTIONS AND FUNCTIONS
 io.on('connection', function (socket) {
   var addedUser = false;
-  log("A user has been added");
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
-    log('add user event emitted');
+//    log('add user event emitted');
     if (addedUser) return;
-    // we store the username in the socket session for this client
-    if(allPlayers.length >= 4) {
+
+    if(gameBoard.allPlayers.length >= 4) {
       log("Lobby is full. Cannot add more players");
       return;
     }
     socket.username = username;
+    socket.userID = gameBoard.allPlayers.length + 1;
     ++numUsers;
     addedUser = true;
 
     // Add user to Global Game State
-    allPlayers.push(new User(allPlayers.length + 1, socket.username));
+    gameBoard.allPlayers.push(new User(socket.userID, socket.username));
 
-    // echo globally (all clients) that a person has connected
+    //Echo to the Client that he has successfully Joined
     socket.emit('user joined', {
-      username: socket.username,
-      numUsers: numUsers
+      "username": socket.username,
+      "userID": socket.userID
     });
 
-    socket.emit('all players', allPlayers);
-
-    log(socket.username + " Added. Total users " + numUsers);
-    log(allPlayers);
+    io.emit('all players', gameBoard);
   });
 
+  socket.on('attempt', function checkAttempt (data) {
+
+    // If the Tile is Empty
+    var tileStatus = gameBoard.allTiles[data.tileID].status;
+    var tilePositive = gameBoard.allTiles[data.tileID].positive;
+    if (tileStatus === 'idle') {
+      successAttemptUpdate(data, socket);
+    }
+
+    if (tileStatus === 'bomb' && (data.userID != tilePositive)) {
+      data.positiveID = tilePositive;
+      userHasExploded(data);
+    }
+
+  })
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
     if (addedUser) {

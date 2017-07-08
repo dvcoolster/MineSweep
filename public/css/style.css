@@ -217,7 +217,7 @@ body {
         color: #FFF;
         font-family: "Roboto Slab", serif;
         font-size: .9em; }
-      .players-wrapper .player .player-avatar-back .points-score {
+      .players-wrapper .player .player-avatar-back .points {
         width: 85%;
         margin: auto;
         text-align: right;
@@ -225,14 +225,17 @@ body {
         font-family: "Roboto Slab", serif;
         font-weight: 400;
         font-size: 1.5em; }
-      .players-wrapper .player .player-avatar-back .points-score:after {
-        content: 'PTS'; }
+      .players-wrapper .player .player-avatar-back .points:after {
+        content: ' PTS'; }
 
 /*# Added by DV */
 .image-on-tile {
   padding: 10px 0px 0px 5px;
   transform: rotate(-45deg);
   width: 20px;
+}
+.deadTile {
+  
 }
 
 /*# sourceMappingURL=style.css.map */
