@@ -52,6 +52,6 @@ $(document).ready(function(){
 	$('.time').text(time);
 
 // Establishing Socket Connections
-	$.getScript('js/socket.js');
+	//$.getScript('js/socket.js'); // This was repeated initialization of socket, causing the major issue
 
 });
